@@ -16,7 +16,7 @@ r = D*dt/(2.0*dx*dx); %CN Parameter
 
 %Parameters
 phase_shift_value = 0.25; % Corresponds to initial phase difference
-basal_multiplier = 10;
+basal_multiplier = 9;
 na0p = 985.56*basal_multiplier;
 na1p = 0;
 K1 = 5937;
@@ -96,7 +96,7 @@ end
 for k = 1:Time/dt
     for i = 2:M1-1
     %Compute RHS for both q1 and q2 each time step
-    F1(i) = q1(i+1,k)*r_s+q1(i,k)*(1-2.0*r_s-dt*gamma_s/2.0)+q1(i-1,k)*r_s+ dt*(na0_s(i)+na1_s(i)*(q1_del(i))^(n1))/(1+(q1_del(i))^n1+(q2_del(i)/K2_s)^n2) - dt*de_s*(q1(i,k)*(q2_del(i)/Ke_s)^ne)/(1+(q2_del(i)/Ke_s)^ne);
+    F1(i) = q1(i+1,k)*r_s+q1(i,k)*(1-2.0*r_s-dt*gamma_s/2.0)+q1(i-1,k)*r_s+ dt*(na0_s(i)+na1_s(i)*(q1_del(i))^(n1))/(1+(q2_del(i)/K2_s)^n2) - dt*de_s*(q1(i,k)*(q2_del(i)/Ke_s)^ne)/(1+(q2_del(i)/Ke_s)^ne);
     F2(i) = q2(i+1,k)*r_s+q2(i,k)*(1-2.0*r_s-dt*gamma_s/2.0)+q2(i-1,k)*r_s+ dt*(nr0_s(i)+nr1_s(i)*(q1_del(i))^(n1))/(1+(q1_del(i))^n1) - dt*de_s*(q2(i,k)*(q2_del(i)/Ke_s)^ne)/(1+(q2_del(i)/Ke_s)^ne);
     end
     
@@ -260,7 +260,7 @@ if sync_test == true
         end
         for i = 2:M1-1
         %Compute RHS for both q1 and q2 each time step
-        F1(i) = q1(i+1,k)*r_s+q1(i,k)*(1-2.0*r_s-dt*gamma_s/2.0)+q1(i-1,k)*r_s+ dt*(na0_s(i)+na1_s(i)*(q1_del(i))^(n1))/(1+(q1_del(i))^n1+(q2_del(i)/K2_s)^n2) - dt*de_s*(q1(i,k)*(q2_del(i)/Ke_s)^ne)/(1+(q2_del(i)/Ke_s)^ne);
+        F1(i) = q1(i+1,k)*r_s+q1(i,k)*(1-2.0*r_s-dt*gamma_s/2.0)+q1(i-1,k)*r_s+ dt*(na0_s(i)+na1_s(i)*(q1_del(i))^(n1))/(1+(q2_del(i)/K2_s)^n2) - dt*de_s*(q1(i,k)*(q2_del(i)/Ke_s)^ne)/(1+(q2_del(i)/Ke_s)^ne);
         F2(i) = q2(i+1,k)*r_s+q2(i,k)*(1-2.0*r_s-dt*gamma_s/2.0)+q2(i-1,k)*r_s+ dt*(nr0_s(i)+nr1_s(i)*(q1_del(i))^(n1))/(1+(q1_del(i))^n1) - dt*de_s*(q2(i,k)*(q2_del(i)/Ke_s)^ne)/(1+(q2_del(i)/Ke_s)^ne);
         end
         
